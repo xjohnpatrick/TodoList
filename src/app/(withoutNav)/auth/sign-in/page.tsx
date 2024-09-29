@@ -7,44 +7,25 @@ import { FaKey } from "@react-icons/all-files/fa6/FaKey";
 import { FcGoogle } from "@react-icons/all-files/fc/FcGoogle";
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
 import { IoCloseCircle } from "@react-icons/all-files/io5/IoCloseCircle";
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@nextui-org/button';
 import '../auth.css'
-import { signIn } from './signInFunctions';
-import { useRouter } from 'next/navigation';
-import Header from '../../../../components/Header';
+import { signInFunctions } from './signInUtils';
+
 
 export default function Signin() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const router = useRouter();
-    const [loading, setLoading] = useState(false)
-
-    const clearInput = () => {
-        setEmail('');
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-          await signIn(email, password);
-          router.push('/main/dashboard');
-        } catch (error) {
-          setError(error.message);
-          setTimeout(() => {
-            setError(''); // Clear the error message
-          }, 3000); 
-        } finally {
-            setLoading(false);
-        }
-      };
+    const {
+        email, setEmail,
+        password, setPassword,
+        error,
+        loading,
+        handleSubmit,
+        clearInput
+    } = signInFunctions();
 
   return (
         <div className='flex bg-white w-full h-screen justify-center items-center dark:bg-[#262c40] font-poppins'>
-            <div className="flex items-center flex-col mr-[150px] xxsm:mr-[50px] xsm:mr-0">
+            <div className="flex items-center flex-col">
                 <div className="flex text-[#2B2B2B] text-4xl dark:text-[#f2f7fb] font-bold mb-12">Log in to
                     <div className="flex items-center">
                     <IoMdRocket width={22} height={36} color="#839dd1"/>

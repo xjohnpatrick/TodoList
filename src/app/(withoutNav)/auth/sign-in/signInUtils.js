@@ -1,5 +1,8 @@
 // src/app/auth/sign-up/signInFunctions.js
+'use client'
 import axios from "axios";
+import { useRouter } from 'next/navigation';
+import { useState } from "react";
 
 // Define the API base URL or use environment variables
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
@@ -42,3 +45,40 @@ export const signIn = async (email, password) => {
     }
   }
 };
+
+export const signInFunctions = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const router = useRouter();
+    const [loading, setLoading] = useState(false)
+
+    const clearInput = () => {
+        setEmail('');
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+          await signIn(email, password);
+          router.push('/main/dashboard');
+        } catch (error) {
+          setError(error.message);
+          setTimeout(() => {
+            setError(''); // Clear the error message
+          }, 3000); 
+        } finally {
+            setLoading(false);
+        }
+      };
+
+      return {
+        email, setEmail,
+        password, setPassword,
+        error,
+        loading,
+        handleSubmit,
+        clearInput
+      }
+}

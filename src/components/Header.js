@@ -3,19 +3,16 @@
 
 import React from 'react'
 import { IoMdRocket } from "@react-icons/all-files/io/IoMdRocket";
-import { IoIosArrowRoundForward } from "@react-icons/all-files/io/IoIosArrowRoundForward";
 import Link from 'next/link';
-import { Button } from '@nextui-org/button';
-import { useState, useEffect } from 'react';
 
 function Header() {
 
   return (
-    <header className='flex w-full h-24 font-poppins bg-blue'>
+    <header className='flex w-full h-24 font-poppins bg-blue items-center relative'>
       
-      <div className='flex items-center'>
+      <div className='flex w-full justify-center'>
         <Link href='/'>
-          <button className='flex items-center font-bold text-4xl p-2 ml-16 xxsm:ml-32 hover:bg-lightPurple/30 rounded-lg'>
+          <button className='flex items-center font-bold text-4xl p-2 hover:bg-lightPurple/30 rounded-lg sm:absolute sm:left-5 sm:top-5 md:left-20 xl:left-32'>
             <IoMdRocket width={22} height={36} color="#839dd1"/>
             <span className="text-lightPurple">to</span>
             <span className="text-lightPurple">do</span>
@@ -23,12 +20,14 @@ function Header() {
         </Link>
       </div>
 
-      <div className='flex relative w-full h-full items-center text-white'>
-        <div className='flex items-center absolute xsm:right-24 sm:right-32 whitespace-nowrap'>
-          <label className='hidden xsm:flex'>Log In</label>
-          <Link href='/auth/sign-in'>
-              <Button radius='full' className='flex bg-btnPage text-white w-[180px] h-14 text-lg ml-4'>Get started <IoIosArrowRoundForward size={28}/></Button>
-          </Link>
+      <div className='flex w-full justify-center text-white'>
+        <div className='flex sm:absolute sm:right-5 sm:top-5 md:right-20 xl:right-32 gap-10'>
+        <Link href='#'>
+            <button className='flex text-white h-14 text-lg items-center hover:bg-lightPurple/30 p-2 rounded-lg'>About Us</button>
+        </Link>
+        <Link href='/auth/sign-in'>
+            <button className='flex text-white h-14 text-lg items-center hover:bg-lightPurple/30 p-2 rounded-lg'>Log in</button>
+        </Link>
         </div>
       </div>
       

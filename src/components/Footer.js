@@ -11,7 +11,7 @@ function Footer() {
   return (
     <footer className='flex w-full h-56 font-poppins flex-col bg-blue text-white'>
         <div className='flex flex-col gap-10 w-full h-full justify-center items-center'>
-            <div className='flex w-[484px] justify-center gap-10 mr-[160px] xxsm:mr-[100px] xsm:mr-[50px] sm:mr-0'>
+            <div className='flex w-full justify-center gap-10'>
               <Button isIconOnly size='sm' radius='full' className='flex bg-blue text-white'>
                 <FaFacebook size={34}/>
               </Button>
@@ -22,15 +22,17 @@ function Footer() {
                 <FaXTwitter size={34}/>
               </Button>
             </div>
-            <div className='flex w-[484px] justify-center gap-10 mr-[160px] xxsm:mr-[100px] xsm:mr-[50px] sm:mr-0'>
-              <Link href='/footer-main/about-us'>
-              <button className='flex hover:underline'>
-                About Us
-              </button>
-              </Link>
+            <div className='flex justify-center gap-4'>
+              <Link href='#'>
               <button className='flex hover:underline'>
                 Terms and Conditions
               </button>
+              </Link>
+              <Link href='#'>
+              <button className='flex hover:underline'>
+                Contact Us
+              </button>
+              </Link>
               <Link href='/footer-main/howDoesItWork'>
               <button className='flex hover:underline'>
                 How does it work
@@ -38,7 +40,7 @@ function Footer() {
               </Link>
             </div>
         </div>
-        <div className='flex w-full items-center justify-center pr-[155px] xxsm:pr-[100px] xsm:pr-[50px] sm:pr-0'>
+        <div className='flex w-full items-center justify-center'>
           © 2024 TodoList. All rights reserved.
         </div> 
     </footer>
