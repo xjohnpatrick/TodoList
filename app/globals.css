@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.relative input:focus + label,
+.relative input:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 2px;
+    font-size: 0.75rem;
+    color: #414e6e;
+}
+
+::-ms-reveal {
+    filter: invert(100%);
+}

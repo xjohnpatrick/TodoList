@@ -1,10 +1,12 @@
 import type { Config } from "tailwindcss";
+const { nextui } = require("@nextui-org/theme");
 
 export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/components/button.js",
   ],
   theme: {
     extend: {
@@ -16,8 +18,8 @@ export default {
           DEFAULT: "#d3e2f2",
           100: "#6a7fc1",
           200: "#4a5989",
-          300: "#262c40",
-          400: "#414e6e",
+          300: "#414e6e",
+          400: "#262c40",
         },
         gray: {
           DEFAULT: "#596379",
@@ -30,5 +32,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [nextui()],
 } satisfies Config;

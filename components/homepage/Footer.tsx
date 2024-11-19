@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="flex w-full h-40 lg:h-56 font-poppins flex-col bg-purple-300">
+    <footer className="flex w-full h-40 lg:h-56 font-poppins flex-col bg-purple-400">
       <div className="flex flex-col w-full h-full justify-center gap-4">
         <div className="flex w-full gap-4 sm:gap-6 lg:gap-10 justify-center">
           {[
@@ -30,7 +30,7 @@ export default function Footer() {
                   isIconOnly
                   size="sm"
                   radius="full"
-                  className="flex text-white"
+                  className="flex text-white bg-purple-400"
                 >
                   {item.icon}
                 </Button>

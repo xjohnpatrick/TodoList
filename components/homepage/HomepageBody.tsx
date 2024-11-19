@@ -3,12 +3,13 @@ import { FaLock } from "react-icons/fa6";
 import { FaUnlock } from "react-icons/fa";
 import { CgTrash } from "react-icons/cg";
 import { IoMdRocket } from "react-icons/io";
+import { FaArrowRight } from "react-icons/fa6";
 
 import { Button } from "@nextui-org/button";
 
 export default function HomepageBody() {
   return (
-    <div className="flex flex-col w-full h-[1000px] lg:h-screen font-poppins">
+    <div className="flex flex-col w-full h-[1100px] lg:h-screen font-poppins">
       <div className="flex flex-col w-full bg-gray/10 h-96 lg:h-[600px] p-4 justify-center">
         {[
           {
@@ -30,18 +31,18 @@ export default function HomepageBody() {
         ].map((item, index) => (
           <span
             key={index}
-            className={`text-purple-300 text-center ${item.className}`}
+            className={`text-purple-400 text-center ${item.className}`}
           >
             {item.text}
           </span>
         ))}
       </div>
       <div className="flex flex-col lg:flex-row w-full h-full items-center px-4">
-        <div className="flex w-full h-full justify-center items-center">
-          <div className="flex flex-col w-full 2xl:w-[600px] h-full lg:h-96 p-4 justify-center">
+        <div className="flex flex-col w-full h-full justify-center items-center">
+          <div className="flex flex-col w-full 2xl:w-[600px] h-full lg:h-96 justify-center items-center lg:items-start p-4">
             {[
               {
-                text: "Stay productive and focused with ",
+                text: "Stay productive and focused with",
                 className: "text-xl lg:text-3xl xl:text-4xl font-bold",
                 isTodo: true,
               },
@@ -56,14 +57,15 @@ export default function HomepageBody() {
             ].map((item, index) => (
               <div
                 key={index}
-                className={`text-center lg:text-start text-purple-300 ${item.className}`}
+                className={`text-center lg:text-start text-purple-400 ${item.className}`}
               >
                 {item.isTodo ? (
                   <span>
                     {item.text}
                     <IoMdRocket className="inline text-purple-200 text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-0.5" />
                     <span className="font-bold text-purple-100">to</span>
-                    <span className="font-bold text-purple-200">do!</span>
+                    <span className="font-bold text-purple-200">do</span>
+                    <span>!</span>
                   </span>
                 ) : (
                   <span className={`flex lg:text-justify ${item.className}`}>
@@ -72,6 +74,9 @@ export default function HomepageBody() {
                 )}
               </div>
             ))}
+            <Button className="flex w-40 mt-4 bg-purple-200 rounded-full text-white p-3 lg:p-4">
+              Sign Up Here <FaArrowRight />
+            </Button>
           </div>
         </div>
         <div className="flex justify-center w-full h-full lg:h-[450px] xl:h-[600px] 2xl:h-[620px] px-4 py-6">
@@ -89,7 +94,7 @@ export default function HomepageBody() {
             <div className="flex gap-2 w-full">
               <input
                 type="text"
-                className="p-1.5 sm:px-3 rounded-md bg-white-50 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-gray-50/50"
+                className="p-1.5 sm:px-3 rounded-md bg-white-50 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50"
                 placeholder="Add a new task"
               />
               <Button className="flex bg-purple-100 rounded-md text-white p-1.5 w-14 xl:w-20 xl:h-14 text-sm xl:text-base">

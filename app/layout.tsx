@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/app/fonts/fonts"
+import Footer from "@/components/homepage/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -20,6 +21,7 @@ export default function RootLayout({
         className={`${poppins.variable}`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { IoMdRocket } from "react-icons/io";
 
 export default function Navbar() {
   return (
-    <main className="flex w-full font-poppins h-24 items-center relative bg-purple-300">
+    <main className="flex w-full font-poppins h-24 items-center relative bg-purple-400">
       <div className="flex absolute left-0 sm:left-5 lg:left-20">
         <Link href="/">
           <button className="flex items-center p-2 rounded-lg">
@@ -20,14 +20,16 @@ export default function Navbar() {
         {[
           {
             label: "About Us",
+            href: "#",
           },
           {
             label: "Log In",
+            href: "/auth/sign-in"
           },
         ].map((item, index) => (
           <div key={index}>
-            <Link href="">
-              <button className="text-white text-base">{item.label}</button>
+            <Link href={item.href}>
+              <button className="text-white text-base hover:underline">{item.label}</button>
             </Link>
           </div>
         ))}
