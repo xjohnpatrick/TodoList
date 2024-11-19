@@ -8,9 +8,25 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["var(--font-poppins)"],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        purple: {
+          DEFAULT: "#d3e2f2",
+          100: "#6a7fc1",
+          200: "#4a5989",
+          300: "#262c40",
+          400: "#414e6e",
+        },
+        gray: {
+          DEFAULT: "#596379",
+          100: "#596379",
+        },
+        white: {
+          DEFAULT: "#ffffff",
+          50: "#d3e2f2",
+        },
       },
     },
   },
