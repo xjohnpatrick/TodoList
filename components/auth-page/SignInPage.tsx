@@ -27,8 +27,8 @@ export default function SignInPage() {
         </div>
       </div>
 
-      <div className="flex flex-col w-full sm:w-[320px]">
-        <div className="flex flex-col w-full px-4 gap-5 relative">
+      <div className="flex flex-col w-[320px]">
+        <div className="flex flex-col w-full px-4 gap-5 relative mt-4">
           {[
             {
               label: "Email",
