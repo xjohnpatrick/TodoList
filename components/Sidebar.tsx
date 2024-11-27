@@ -18,12 +18,22 @@ const sidebarVariants = {
   closed: { x: "-70%", transition: { type: "spring", stiffness: 100 } },
 };
 
+const settingsVariants = {
+  open: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } },
+  closed: {
+    x: "100%",
+    opacity: 0,
+    transition: { type: "spring", stiffness: 100 },
+  },
+};
+
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <motion.div
-      className="absolute top-0 left-0 h-full bg-purple text-white w-64 px-4 py-5 shadow-lg z-10 font-poppins"
+      className="absolute top-0 left-0 h-full bg-purple text-white w-64 px-4 py-5 shadow-lg z-10 font-poppins  hidden lg:block"
       initial="closed"
       animate={isOpen ? "open" : "closed"}
       variants={sidebarVariants}
@@ -43,16 +53,19 @@ export default function Sidebar() {
         <div className="flex items-center gap-4 absolute top-0 left-0">
           <User
             name={<span className="text-purple-400">John Patrick</span>}
-            description={<span className="text-purple-400">Queti</span>}
+            description={
+              <span className="text-purple-400">Front-End Developer</span>
+            }
             avatarProps={{
               src: "/patrick.jpeg",
               alt: "Image",
             }}
+            className={`${isOpen ? "" : "transition-all hidden"}`}
           />
         </div>
         <div
           className={`flex flex-col h-full mt-20  ${
-            isOpen ? "" : "transition-colors-opacity hidden"
+            isOpen ? "" : "transition-all hidden"
           }`}
         >
           <span className="text-xs text-purple-400">Main</span>
@@ -135,11 +148,22 @@ export default function Sidebar() {
               className="bg-transparent text-purple-400 flex justify-between mt-4"
               size="lg"
               radius="sm"
+              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
             >
               <RiSettings4Fill size={20} />
               Settings
               <IoIosArrowForward size={20} />
             </Button>
+
+            <motion.div
+              className="absolute bottom-20 left-56 bg-purple p-4 mt-6 shadow-md shadow-purple-400/50"
+              initial="closed"
+              animate={isSettingsOpen ? "open" : "closed"}
+              variants={settingsVariants}
+            >
+              {/* Your settings content goes here */}
+              <div className="text-purple-400">Settings Content</div>
+            </motion.div>
 
             <div className="flex h-[2.5px] w-full bg-purple-400 my-4" />
 
