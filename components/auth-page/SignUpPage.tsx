@@ -47,7 +47,7 @@ export default function SignUpPage() {
     setUsername("");
   };
   return (
-    <div className="flex flex-col bg-white w-full h-screen justify-center items-center font-poppins gap-4">
+    <div className="flex flex-col bg-white-50 w-full h-screen justify-center items-center font-poppins gap-4">
       <div className="flex text-purple-400 text-4xl font-bold">
         <span>Sign up to</span>
         <div className="flex items-center">

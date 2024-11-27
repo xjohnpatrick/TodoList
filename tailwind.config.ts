@@ -1,12 +1,12 @@
 import type { Config } from "tailwindcss";
-const { nextui } = require("@nextui-org/theme");
+const { nextui } = require("@nextui-org/react");
 
 export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(button|checkbox|modal).js",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -23,11 +23,11 @@ export default {
         },
         gray: {
           DEFAULT: "#596379",
-          100: "#596379",
         },
         white: {
           DEFAULT: "#ffffff",
-          50: "#d3e2f2",
+          50: "#f2f7fb",
+          100: "#d3e2f2",
         },
       },
     },

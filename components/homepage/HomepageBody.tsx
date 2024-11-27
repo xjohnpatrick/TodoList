@@ -80,7 +80,7 @@ export default function HomepageBody() {
           </div>
         </div>
         <div className="flex justify-center w-full h-full lg:h-[450px] xl:h-[600px] 2xl:h-[620px] px-4 py-6">
-          <div className="flex flex-col items-center w-full sm:w-[450px] xl:w-[550px] 2xl:w-[650px] h-full bg-purple/50 rounded-3xl p-4 2xl:px-8 shadow-md shadow-gray-100/50 gap-4">
+          <div className="flex flex-col items-center w-full sm:w-[450px] xl:w-[550px] 2xl:w-[650px] h-full bg-purple/50 rounded-3xl p-4 2xl:px-8 shadow-md shadow-gray/50 gap-4">
             <div className="xl:mt-4">
               <IoMdRocket className="inline text-purple-200 text-xl sm:text-3xl xl:text-4xl ml-0.5 mb-1 sm:mb-2.5 xl:mb-3" />
               <span className="font-bold text-purple-100 text-xl sm:text-3xl xl:text-4xl">
@@ -94,7 +94,7 @@ export default function HomepageBody() {
             <div className="flex gap-2 w-full">
               <input
                 type="text"
-                className="p-1.5 sm:px-3 rounded-md bg-white-50 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50"
+                className="p-1.5 sm:px-3 rounded-md bg-white-100 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50"
                 placeholder="Add a new task"
               />
               <Button className="flex bg-purple-100 rounded-md text-white p-1.5 w-14 xl:w-20 xl:h-14 text-sm xl:text-base">

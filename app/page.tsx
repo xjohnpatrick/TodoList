@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import HomepageBody from "@/components/homepage/HomepageBody";
 import Navbar from "@/components/homepage/Navbar";
 import { NextUIProvider } from "@nextui-org/system";
@@ -8,6 +9,7 @@ export default function Home() {
       <div className="flex flex-col w-full h-full">
         <Navbar />
         <HomepageBody />
+        <Footer />
       </div>
     </NextUIProvider>
   );

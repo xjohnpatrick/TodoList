@@ -17,7 +17,7 @@ export default function SignInPage() {
     setEmail("");
   };
   return (
-    <div className="flex flex-col bg-white w-full h-screen justify-center items-center font-poppins gap-4">
+    <div className="flex flex-col bg-white-50 w-full h-screen justify-center items-center font-poppins gap-4">
       <div className="flex text-purple-400 text-4xl font-bold">
         <span>Log in to</span>
         <div className="flex items-center">
@@ -91,16 +91,18 @@ export default function SignInPage() {
             </button>
           </Link>
         </div>
-
-        <div className="flex relative justify-center w-full px-4 mt-4">
-          <Button
-            type="submit"
-            size="lg"
-            className="flex bg-purple-300 text-white w-full rounded-md justify-center p-3"
-          >
-            Log In
-          </Button>
-        </div>
+        
+        <Link href="/main/dashboard">
+          <div className="flex relative justify-center w-full px-4 mt-4">
+            <Button
+              type="submit"
+              size="lg"
+              className="flex bg-purple-300 text-white w-full rounded-md justify-center p-3"
+            >
+              Log In
+            </Button>
+          </div>{" "}
+        </Link>
 
         <div className="flex my-10 justify-center items-center gap-7">
           <div className="flex bg-purple-300 h-0.5 w-[105px]"></div>
