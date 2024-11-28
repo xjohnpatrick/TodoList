@@ -62,7 +62,7 @@ export default function Profile() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-col w-full h-40 rounded-md border-1 border-gray-50/20 p-4 gap-4">
+        <div className="flex flex-col w-full h-36 rounded-md border-1 border-gray-50/20 p-4 gap-4">
           <label className="text-lg">Profile Image</label>
 
           <div className="flex items-center gap-4">
