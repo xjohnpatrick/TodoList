@@ -12,8 +12,8 @@ export default function Account() {
     const openModalDelete = () => setModalDeleteOpen(true);
     const closeModalDelete = () => setModalDeleteOpen(false);
   return (
-    <div className="flex w-full h-screen bg-white-50 justify-center items-center font-poppins">
-      <div className="flex flex-col items-center w-[90vw] lg:w-[45vw] h-[90vh] rounded-md gap-4 overflow-y-scroll scrollbar-hide">
+    <div className="flex w-full h-screen bg-white-50 justify-center font-poppins">
+      <div className="flex flex-col items-center w-[90vw] lg:w-[45vw] h-[90vh] rounded-md gap-4 mt-4">
         {[
           {
             label: "Connect Google",

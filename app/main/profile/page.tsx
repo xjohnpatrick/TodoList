@@ -26,7 +26,7 @@ export default function Profile() {
   };
   return (
     <div className="flex w-full h-screen bg-white-50 justify-center items-center font-poppins">
-      <div className="flex flex-col items-center w-[90vw] md:w-[70vw] lg:w-[45vw] lg:h-[60vh] rounded-md gap-4 overflow-y-scroll scrollbar-hide">
+      <div className="flex flex-col lg:flex-row items-center w-[90vw] md:w-[70vw] lg:w-[55vw] lg:h-[60vh] rounded-md gap-4 overflow-y-scroll scrollbar-hide">
         <div className="flex flex-col w-full h-[400px] rounded-md border-1 border-gray-50/20 p-4 gap-4">
           <label className="text-2xl font-semibold">User</label>
           <div className="flex flex-col w-full gap-2">
@@ -62,11 +62,11 @@ export default function Profile() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-col w-full h-36 rounded-md border-1 border-gray-50/20 p-4 gap-4">
+        <div className="flex flex-col w-full h-36 lg:h-[400px] rounded-md border-1 border-gray-50/20 p-4 gap-4">
           <label className="text-lg">Profile Image</label>
 
-          <div className="flex items-center gap-4">
-            <div className="flex w-16 h-16 relative">
+          <div className="flex lg:flex-col items-center gap-4">
+            <div className="flex w-16 h-16 lg:w-32 lg:h-32 relative">
               <Image
                 src={imageSrc}
                 alt="Image"
@@ -76,7 +76,7 @@ export default function Profile() {
             </div>
             <Button
               size="sm"
-              className="text-base text-purple-400"
+              className="text-base text-purple-400 lg:mt-4"
               onClick={triggerFileInput}
             >
               Choose File
