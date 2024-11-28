@@ -33,10 +33,10 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               <label className="flex text-md font-bold">1. Introduction</label>
               <p className="flex text-sm text-justify">
                 Welcome to TodoList. By accessing or using our website and
-                application and application (collectively, "Service"). you agree
-                to comply with and be bound by the following Terms and
-                Conditions. If you do not agree with these terms, please do not
-                use our Service.
+                application and application (collectively,
+                &ldquo;Service&ldquo;). you agree to comply with and be bound by
+                the following Terms and Conditions. If you do not agree with
+                these terms, please do not use our Service.
               </p>
 
               <label className="flex text-md font-bold">
@@ -90,9 +90,10 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               <label className="flex text-md font-bold">5. User Content</label>
               <p className="flex text-sm text-justify">
                 You are solely responsible for any content you create, upload,
-                or manage using our Service ("User Content"). You grant us a
-                non-exclusive, worldwide, royalty-free license to use, display,
-                and distribute your User Content in connection with the Service.
+                or manage using our Service (&ldquo;User Content&ldquo;). You
+                grant us a non-exclusive, worldwide, royalty-free license to
+                use, display, and distribute your User Content in connection
+                with the Service.
               </p>
 
               <label className="flex text-md font-bold">
@@ -116,10 +117,10 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
                 8. Disclaimer of Warranties
               </label>
               <p className="flex text-sm text-justify">
-                Our Service is provided on an "as is" and "as available" basis.
-                We make no warranties, express or implied, regarding the
-                Service, including but not limited to, the accuracy,
-                reliability, or availability of the Service.
+                Our Service is provided on an &ldquo;as is&ldquo; and &ldquo;as
+                available&ldquo; basis. We make no warranties, express or
+                implied, regarding the Service, including but not limited to,
+                the accuracy, reliability, or availability of the Service.
               </p>
 
               <label className="flex text-md font-bold">
