@@ -157,9 +157,9 @@ export default function ModalPrivacy ({
               </label>
               <p className="flex text-sm text-justify">
                 We may update our Privacy Policy from time to time. We will
-                notify you of any changes by updating the "Last Updated" date at
-                the top of this policy. We encourage you to review this Privacy
-                Policy periodically for any updates.
+                notify you of any changes by updating the &ldquo;Last
+                Updated&ldquo; date at the top of this policy. We encourage you
+                to review this Privacy Policy periodically for any updates.
               </p>
 
               <label className="flex text-md font-bold">9. Contact Us</label>
