@@ -135,7 +135,7 @@ export default function SignInPage() {
 
         <Link href="/auth/sign-up" className="flex justify-center mt-4">
           <button className="hover:underline text-sm lg:text-base">
-            Don't have an account?
+            Don&apos;t have an account?
           </button>
         </Link>
       </div>

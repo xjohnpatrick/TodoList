@@ -54,18 +54,23 @@ export default function ModalDeleteAcc({
                     to save or transfer them before proceeding.
                   </li>
                   <li>
-                    If you're unsure or need help, please contact our support
-                    team.
+                    If you&apos;re unsure or need help, please contact our
+                    support team.
                   </li>
                 </ul>
 
                 <label className="inline text-[12px]">
-                  To confirm deletion, type your account first name below and click{" "}
-                  <span className="font-bold">"Delete Account."</span>
+                  To confirm deletion, type your account first name below and
+                  click{" "}
+                  <span className="font-bold">
+                    &ldquo;Delete Account.&ldquo;
+                  </span>
                 </label>
                 <label className="inline text-[12px]">
                   First Name:{" "}
-                  <span className="font-bold text-purple-100">John Patrick</span>
+                  <span className="font-bold text-purple-100">
+                    John Patrick
+                  </span>
                 </label>
                 <Input />
               </ModalBody>
