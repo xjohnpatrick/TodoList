@@ -15,10 +15,10 @@ interface ModalPrivacyProps {
   onPrivacyChange?: () => void;
 }
 
-const ModalPrivacy = ({
+export default function ModalPrivacy ({
   isPrivacyOpen,
   onPrivacyChange,
-}: ModalPrivacyProps) => {
+}: ModalPrivacyProps) {
   return (
     <Modal
       placement="bottom-center"
@@ -187,5 +187,3 @@ const ModalPrivacy = ({
     </Modal>
   );
 };
-
-export default ModalPrivacy;

@@ -60,7 +60,7 @@ export default function SignInPage() {
             },
           ].map((item, index) => (
             <form key={index}>
-              <div className="flex relative">
+              <div className="flex relative custom-password-field">
                 {item.icon}
                 <input
                   type={item.type}
@@ -91,7 +91,7 @@ export default function SignInPage() {
             </button>
           </Link>
         </div>
-        
+
         <Link href="/main/dashboard">
           <div className="flex relative justify-center w-full px-4 mt-4">
             <Button

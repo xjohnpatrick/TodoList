@@ -14,7 +14,7 @@ interface ModalTermsProps {
     onTermsChange?: () => void;
 }
 
-const ModalTerms = ({ isTermsOpen, onTermsChange }: ModalTermsProps) => {
+export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsProps) {
   return (
     <Modal
       placement="bottom-center"
@@ -165,5 +165,3 @@ const ModalTerms = ({ isTermsOpen, onTermsChange }: ModalTermsProps) => {
     </Modal>
   );
 };
-
-export default ModalTerms;

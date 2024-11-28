@@ -124,7 +124,7 @@ export default function SignUpPage() {
                 value: confirmPassword,
               },
             ].map((item, index) => (
-              <div key={index} className="flex relative">
+              <div key={index} className="flex relative custom-password-field">
                 {item.icon}
                 <input
                   type={item.type}

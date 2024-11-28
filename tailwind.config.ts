@@ -23,6 +23,7 @@ export default {
         },
         gray: {
           DEFAULT: "#596379",
+          50: "#373e53",
         },
         white: {
           DEFAULT: "#ffffff",
