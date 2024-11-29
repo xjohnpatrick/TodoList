@@ -17,10 +17,6 @@ export default function Navbar() {
       <div className="flex absolute right-5 lg:right-20 gap-4">
         {[
           {
-            label: "About Us",
-            href: "#",
-          },
-          {
             label: "Log In",
             href: "/auth/sign-in",
           },

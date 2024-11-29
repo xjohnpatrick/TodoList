@@ -25,7 +25,7 @@ const sidebarVariants = {
 const settingsVariants = {
   open: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } },
   closed: {
-    x: "100%",
+    x: "-200%",
     opacity: 0,
     transition: { type: "spring", stiffness: 100 },
   },
@@ -39,8 +39,8 @@ export default function Sidebar() {
   const [editingIndex, setEditingIndex] = useState<number | null>(null); // Index of the category being edited
   const [editedText, setEditedText] = useState(""); // Current text being edited
   const [categories, setCategories] = useState([
-    { label: "Work" },
     { label: "Personal" },
+    { label: "Work" },
     { label: "Home" },
     { label: "Health" },
   ]);
@@ -188,8 +188,8 @@ export default function Sidebar() {
                 </span>
               </div>
 
-              <div className="flex h-[530px] mt-4 overflow-y-scroll scrollbar-hide">
-                <div className="flex flex-col gap-4 py-4 w-full">
+              <div className="flex-1 mt-4">
+                <div className="flex flex-col gap-4 py-4 w-full h-[550px] overflow-y-scroll scrollbar-hide">
                   {categories.map((item, index) => (
                     <div key={index} className="flex items-center">
                       {editingIndex === index ? (
@@ -235,7 +235,7 @@ export default function Sidebar() {
 
               <div className="flex flex-col">
                 <Button
-                  className="bg-transparent text-purple-400 flex relative mt-4 hover:bg-purple-100 hover:text-white text-base"
+                  className="bg-transparent text-purple-400 flex relative hover:bg-purple-100 hover:text-white text-base"
                   size="md"
                   radius="sm"
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -263,7 +263,7 @@ export default function Sidebar() {
         </div>
       </motion.div>
       <motion.div
-        className="absolute bottom-20 left-64 bg-purple p-4 mt-6 shadow-md shadow-purple-400/50 w-56 h-40 z-50 font-poppins hidden lg:block"
+        className="absolute bottom-20 left-64 bg-purple p-4 mt-6 shadow-md shadow-purple-400/50 w-56 h-40 z-10 font-poppins hidden lg:block"
         initial="closed"
         animate={isSettingsOpen ? "open" : "closed"}
         variants={settingsVariants}

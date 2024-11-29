@@ -30,17 +30,16 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               Terms and Conditions
             </ModalHeader>
             <ModalBody className="flex overflow-y-scroll scrollbar-hide">
-              <label className="flex text-md font-bold">1. Introduction</label>
               <p className="flex text-sm text-justify">
                 Welcome to TodoList. By accessing or using our website and
-                application and application (collectively,
+                application (collectively,
                 &ldquo;Service&ldquo;). you agree to comply with and be bound by
                 the following Terms and Conditions. If you do not agree with
                 these terms, please do not use our Service.
               </p>
 
               <label className="flex text-md font-bold">
-                2. Account Registration
+                1. Account Registration
               </label>
               <p className="flex text-sm text-justify">
                 To use certain features of our Service, you may be required to
@@ -52,7 +51,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               </p>
 
               <label className="flex text-md font-bold">
-                3. Use of the Service
+                2. Use of the Service
               </label>
               <p className="flex text-sm text-justify">
                 You agree to use our Service only for lawful purposes and in
@@ -62,7 +61,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               </p>
 
               <label className="flex text-md font-bold">
-                4. Prohibited Activities
+                3. Prohibited Activities
               </label>
               <span className="flex flex-col text-sm gap-4 text-justify">
                 <label>You agree not to:</label>
@@ -87,7 +86,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
                 </ul>
               </span>
 
-              <label className="flex text-md font-bold">5. User Content</label>
+              <label className="flex text-md font-bold">4. User Content</label>
               <p className="flex text-sm text-justify">
                 You are solely responsible for any content you create, upload,
                 or manage using our Service (&ldquo;User Content&ldquo;). You
@@ -97,7 +96,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               </p>
 
               <label className="flex text-md font-bold">
-                6. Privacy Policy
+                5. Privacy Policy
               </label>
               <p className="flex text-sm text-justify">
                 Your use of the Service is also governed by our Privacy Policy.
@@ -105,7 +104,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
                 use, and protect your personal information.
               </p>
 
-              <label className="flex text-md font-bold">7. Termination</label>
+              <label className="flex text-md font-bold">6. Termination</label>
               <p className="flex text-sm text-justify">
                 We may terminate or suspend your account and access to the
                 Service at our sole discretion, without prior notice or
@@ -114,7 +113,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               </p>
 
               <label className="flex text-md font-bold">
-                8. Disclaimer of Warranties
+                7. Disclaimer of Warranties
               </label>
               <p className="flex text-sm text-justify">
                 Our Service is provided on an &ldquo;as is&ldquo; and &ldquo;as
@@ -124,7 +123,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               </p>
 
               <label className="flex text-md font-bold">
-                9. Limitation of Liability
+                8. Limitation of Liability
               </label>
               <p className="flex text-sm text-justify">
                 To the fullest extent permitted by law, we shall not be liable
@@ -134,7 +133,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
               </p>
 
               <label className="flex text-md font-bold">
-                10. Changes to Terms
+                9. Changes to Terms
               </label>
               <p className="flex text-sm text-justify">
                 We reserve the right to modify these Terms and Conditions at any
@@ -144,7 +143,7 @@ export default function ModalTerms ({ isTermsOpen, onTermsChange }: ModalTermsPr
                 revised Terms and Conditions.
               </p>
 
-              <label className="flex text-md font-bold">11. Contact Us</label>
+              <label className="flex text-md font-bold">10. Contact Us</label>
               <p className="text-sm text-justify">
                 If you have any questions about these Terms and Conditions,
                 please contact us at

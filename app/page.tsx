@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
-import HomepageBody from "@/components/homepage/HomepageBody";
-import Navbar from "@/components/homepage/Navbar";
+import HomepageBody from "@/components/HomepageBody";
+import Navbar from "@/components/Navbar";
 import { NextUIProvider } from "@nextui-org/system";
 
 export default function Home() {

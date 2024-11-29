@@ -1,8 +1,9 @@
 import "@/app/globals.css";
 import { poppins } from "@/app/fonts/fonts";
-import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
-export default function MainLayout({
+export default function HomepageLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -10,10 +11,9 @@ export default function MainLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable}`}>
-        <div className="flex">
-          <Sidebar />
+        <Navbar />
           {children}
-        </div>
+        <Footer />
       </body>
     </html>
   );

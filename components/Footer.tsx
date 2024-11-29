@@ -18,7 +18,7 @@ export default function Footer() {
                   radius="full"
                   className="flex text-white bg-purple-400 relative"
                 >
-                  <Image src={icon.img} alt={icon.alt} fill/>
+                  <Image src={icon.img} alt={icon.alt} fill />
                 </Button>
               </Link>
             </div>
@@ -28,14 +28,18 @@ export default function Footer() {
           {[
             {
               label: "Terms and Conditions",
-              href: "#",
+              href: "/homepage/terms-and-conditions",
+            },
+            {
+              label: "Privacy Policy",
+              href: "/homepage/privacy-policy",
             },
             {
               label: "Contact Us",
-              href: "#",
+              href: "/homepage/contact-us",
             },
             {
-              label: "How does it work",
+              label: "About Us",
               href: "#",
             },
           ].map((item, index) => (

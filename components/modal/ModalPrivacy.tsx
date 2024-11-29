@@ -33,7 +33,7 @@ export default function ModalPrivacy ({
             <ModalHeader className="flex flex-col gap-1 text-purple-100 font-bold">
               Privacy Policy
               <label className="flex italic text-[12px]">
-                Last Updated: September 15, 2024
+                Last Updated: November 29, 2024
               </label>
             </ModalHeader>
             <ModalBody className="flex overflow-y-scroll scrollbar-hide">
