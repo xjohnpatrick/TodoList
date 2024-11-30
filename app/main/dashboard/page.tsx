@@ -7,13 +7,57 @@ import { CgTrash } from "react-icons/cg";
 import { MdCategory } from "react-icons/md";
 import { BsFillCheckSquareFill } from "react-icons/bs";
 import { Pagination } from "@nextui-org/pagination";
+import { useCategories } from "@/context/CategoryContext";
+import { Select, SelectedItems, SelectItem } from "@nextui-org/select";
+import { TbHome } from "react-icons/tb";
+import { Category } from "@/context/CategoryContext";
+import { MdOutlineWorkOutline } from "react-icons/md";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
 
 export default function Dashboard() {
+  const { categories } = useCategories();
   const [todo, setTodo] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [errorMessage, setErrorMessage] = useState("");
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value; // Get the value from the event
+    const category = categories.find(
+      (category) => category.label === selectedValue // Find the category by label
+    );
+    if (category) {
+      setSelectedCategory(category); // Set the selected category
+    }
+  };
+
   const [tasks, setTasks] = useState([
-    { text: "Buy Groceries", completed: false, locked: false },
-    { text: "Clean the house", completed: true, locked: false },
-    { text: "Schedule team meeting", completed: false, locked: true },
+    {
+      text: "Buy Groceries",
+      completed: false,
+      locked: false,
+      icon: <TbHome size={22} />,
+    },
+    {
+      text: "Clean the house",
+      completed: true,
+      locked: false,
+      icon: <MdCategory size={22} />,
+    },
+    {
+      text: "Schedule team meeting",
+      completed: false,
+      locked: true,
+      icon: <MdOutlineWorkOutline size={22} />,
+    },
   ]);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,17 +66,33 @@ export default function Dashboard() {
 
   const handleAddTodo = () => {
     if (todo.trim()) {
+      if (!selectedCategory) {
+        setErrorMessage("Please select a category.");
+        onOpen();
+        return;
+      }
+
       const totalTasks = tasks.length + 1;
       const maxTasksAllowed = maxPages * tasksPerPage;
 
       if (totalTasks > maxTasksAllowed) {
-        alert(
+        setErrorMessage(
           "Task limit reached. Please delete some tasks before adding more."
         );
+        onOpen();
         return;
       }
 
-      setTasks([...tasks, { text: todo, completed: false, locked: false }]);
+      // Add the new task to the tasks state
+      setTasks([
+        ...tasks,
+        {
+          text: todo,
+          completed: false,
+          locked: false,
+          icon: selectedCategory.icon,
+        },
+      ]);
       setTodo(""); // Clear input after adding
     }
   };
@@ -57,7 +117,7 @@ export default function Dashboard() {
       const updatedTasks = tasks.filter((_, i) => i !== index);
       setTasks(updatedTasks);
     } else {
-      alert("This task is locked and cannot be deleted.");
+      setErrorMessage("This task is locked and cannot be deleted.");
     }
   };
 
@@ -77,19 +137,69 @@ export default function Dashboard() {
           </label>
         </div>
         <div className="flex mt-10 items-center gap-2 w-[90vw] justify-center">
-          <input
-            type="text"
-            id="newTodo"
-            onChange={(e) => setTodo(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleAddTodo();
-              }
-            }}
-            value={todo}
-            className="flex rounded-md bg-purple text-purple-300 p-4 h-[54px] outline-none w-full sm:w-[450px] md:w-[550px] lg:w-[655px] shadow-md shadow-gray/50"
-            placeholder="Add a new task"
-          />
+          <div className="flex relative">
+            <input
+              type="text"
+              id="newTodo"
+              onChange={(e) => setTodo(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleAddTodo();
+                }
+              }}
+              value={todo}
+              className="flex rounded-md bg-purple text-purple-300 p-4 h-[54px] outline-none w-full sm:w-[450px] md:w-[550px] lg:w-[655px] shadow-md shadow-gray/50"
+              placeholder="Add a new task"
+            />
+
+            <Select
+              items={categories}
+              label="Categories"
+              placeholder="Select a category"
+              labelPlacement="inside"
+              classNames={{
+                base: "max-w-xs",
+                trigger: "h-12 bg-transparent",
+              }}
+              style={{
+                background: "none",
+              }}
+              className="max-w-xs absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center w-[90px] sm:w-48"
+              value={selectedCategory ? selectedCategory.label : ""}
+              onChange={handleCategoryChange}
+              // Render the selected value with the category icon
+              renderValue={(items: SelectedItems<Category>) => {
+                return items.map((item) => {
+                  // Safely check if item.data is defined
+                  if (item.data) {
+                    return (
+                      <div key={item.key} className="flex items-center gap-2">
+                        <div className="flex-shrink-0 text-lg text-purple-400">
+                          {item.data.icon}
+                        </div>
+                        <span className="capitalize hidden sm:flex text-purple-400">
+                          {item.data.label}
+                        </span>
+                      </div>
+                    );
+                  }
+                  return null; // Return null if item.data is undefined
+                });
+              }}
+            >
+              {(category) => (
+                <SelectItem key={category.label} textValue={category.label}>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-shrink-0 text-lg">{category.icon}</div>
+                    <span className="capitalize font-poppins hidden sm:flex">
+                      {category.label}
+                    </span>
+                  </div>
+                </SelectItem>
+              )}
+            </Select>
+          </div>
+
           <Button
             id="btnTodo"
             onClick={handleAddTodo}
@@ -154,7 +264,9 @@ export default function Dashboard() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleToggleLock(index);
+                        handleToggleLock(
+                          index + (currentPage - 1) * tasksPerPage
+                        );
                       }}
                     >
                       {task.locked ? (
@@ -166,14 +278,14 @@ export default function Dashboard() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleDeleteTask(index);
+                        handleDeleteTask(
+                          index + (currentPage - 1) * tasksPerPage
+                        );
                       }}
                     >
                       <CgTrash className="w-5 h-5 lg:w-6 lg:h-6" />
                     </button>
-                    <button>
-                      <MdCategory className="w-5 h-5 lg:w-6 lg:h-6" />
-                    </button>
+                    <div className="text-lg">{task.icon}</div>
                   </div>
                 </li>
               </ul>
@@ -185,12 +297,36 @@ export default function Dashboard() {
             total={Math.min(Math.ceil(tasks.length / tasksPerPage), maxPages)}
             initialPage={1}
             page={currentPage}
+            size="sm"
             onChange={(page) => setCurrentPage(page)}
-            className="absolute bottom-8 font-bold"
+            className="font-bold mt-4"
             classNames={{
               cursor: "bg-purple-100 text-white font-bold",
             }}
           />
+          <Modal
+            isOpen={isOpen}
+            onOpenChange={onClose}
+            className="font-poppins"
+          >
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalHeader className="flex flex-col gap-1">
+                    Error
+                  </ModalHeader>
+                  <ModalBody>
+                    <p>{errorMessage}</p>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger" variant="light" onPress={onClose}>
+                      Close
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </Modal>
         </div>
       </div>
     </div>

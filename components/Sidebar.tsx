@@ -6,7 +6,6 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { Button } from "@nextui-org/button";
 import { FaSquarePlus } from "react-icons/fa6";
-import { MdCategory } from "react-icons/md";
 import { IoMdRocket } from "react-icons/io";
 import { MdOutlineLogout } from "react-icons/md";
 import { RiSettings4Fill } from "react-icons/ri";
@@ -16,6 +15,15 @@ import { PiTrashFill } from "react-icons/pi";
 import { MdManageAccounts } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
+import { useCategories } from "@/context/CategoryContext";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
 
 const sidebarVariants = {
   open: { x: 0, transition: { type: "spring", stiffness: 100 } },
@@ -32,24 +40,21 @@ const settingsVariants = {
 };
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isNavOpen, setisNavOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [newCategory, setNewCategory] = useState("");
   const [editCategoryMode, setEditCategoryMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState<number | null>(null); // Index of the category being edited
   const [editedText, setEditedText] = useState(""); // Current text being edited
-  const [categories, setCategories] = useState([
-    { label: "Personal" },
-    { label: "Work" },
-    { label: "Home" },
-    { label: "Health" },
-  ]);
-
+  const { categories, addCategory, deleteCategory, updateCategory } =
+    useCategories();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
-    if (!isOpen) {
+    if (!isNavOpen) {
       setIsSettingsOpen(false);
     }
-  }, [isOpen]);
+  }, [isNavOpen]);
 
   const handleToggleEditMode = () => {
     // Reset edit state when exiting edit mode
@@ -61,14 +66,22 @@ export default function Sidebar() {
   };
 
   const handleAddCategory = () => {
+    if (categories.length >= 15) {
+      setErrorMessage(
+        "You have reached the maximum limit of 15 categories. Please delete some categories."
+      );
+      onOpen(); // Open the modal with error message
+      return;
+    }
+    
     if (newCategory.trim() !== "") {
-      setCategories([...categories, { label: newCategory }]);
+      addCategory(newCategory); // Pass only the label (a string), not the entire object
       setNewCategory(""); // Clear the input field after adding
     }
   };
 
-  const handleDeleteCategory = (indexToRemove: number) => {
-    setCategories(categories.filter((_, index) => index !== indexToRemove));
+  const handleDeleteCategory = (index: number) => {
+    deleteCategory(index); // Pass the index of the category to delete
   };
 
   const handleEditCategory = (index: number, label: string) => {
@@ -80,10 +93,7 @@ export default function Sidebar() {
 
   const handleSaveCategory = (index: number) => {
     if (editedText.trim() !== "") {
-      const updatedCategories = categories.map((item, i) =>
-        i === index ? { ...item, label: editedText } : item
-      );
-      setCategories(updatedCategories); // Update categories
+      updateCategory(index, { ...categories[index], label: editedText });
     }
     setEditingIndex(null); // Exit edit mode
   };
@@ -93,16 +103,16 @@ export default function Sidebar() {
       <motion.div
         className="absolute top-0 left-0 h-full bg-purple text-white w-64 px-4 py-5 shadow-md shadow-gray/50 z-10 font-poppins hidden lg:block overflow-y-scroll scrollbar-hide"
         initial="closed"
-        animate={isOpen ? "open" : "closed"}
+        animate={isNavOpen ? "open" : "closed"}
         variants={sidebarVariants}
       >
         <div className="flex flex-col h-full relative">
           <Button
             className="absolute top-0 right-0.5 p-2 text-white bg-purple-200 rounded z-20 hover:bg-purple-100 hover:text-white"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setisNavOpen(!isNavOpen)}
             isIconOnly
           >
-            {isOpen ? (
+            {isNavOpen ? (
               <IoMdRocket size={24} className="-rotate-90" />
             ) : (
               <IoMdRocket size={24} className="rotate-90" />
@@ -118,12 +128,12 @@ export default function Sidebar() {
                 src: "/patrick.jpeg",
                 alt: "Image",
               }}
-              className={`${isOpen ? "" : "transition-all hidden"}`}
+              className={`${isNavOpen ? "" : "transition-all hidden"}`}
             />
           </div>
           <div
             className={`flex flex-col h-full mt-20  ${
-              isOpen ? "" : "transition-all hidden"
+              isNavOpen ? "" : "transition-all hidden"
             }`}
           >
             <span className="text-xs text-purple-400">Main</span>
@@ -214,7 +224,7 @@ export default function Sidebar() {
                             }
                           }}
                         >
-                          <MdCategory size={22} />
+                          {item.icon}
                           {item.label}
                         </Button>
                       )}
@@ -249,7 +259,7 @@ export default function Sidebar() {
 
                 <Link href="/auth/sign-in">
                   <Button
-                    className="bg-purple-200 text-white-50 flex relative w-full text-base"
+                    className="bg-transparent text-purple-400 hover:bg-purple-100 hover:text-white flex relative w-full text-base"
                     size="md"
                     radius="sm"
                   >
@@ -291,6 +301,23 @@ export default function Sidebar() {
           ))}
         </div>
       </motion.div>
+      <Modal isOpen={isOpen} onOpenChange={onClose} className="font-poppins">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
+              <ModalBody>
+                <p>{errorMessage}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 }
