@@ -12,7 +12,7 @@ export default function HomepageLayout({
     <html lang="en">
       <body className={`${poppins.variable}`}>
         <Navbar />
-          {children}
+        {children}
         <Footer />
       </body>
     </html>
