@@ -18,6 +18,9 @@ export default function SignInPage() {
   };
   return (
     <div className="flex flex-col bg-white-50 w-full h-screen justify-center items-center font-poppins gap-4">
+      <span className="flex text-center absolute top-5 lg:right-5 bg-purple p-2 rounded-md">
+        The system is front-end only. Click "Log In" to check out its features.
+      </span>
       <div className="flex text-purple-400 text-4xl font-bold">
         <span>Log in to</span>
         <div className="flex items-center">
