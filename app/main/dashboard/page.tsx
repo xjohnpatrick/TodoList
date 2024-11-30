@@ -118,6 +118,7 @@ export default function Dashboard() {
       setTasks(updatedTasks);
     } else {
       setErrorMessage("This task is locked and cannot be deleted.");
+      onOpen();
     }
   };
 
