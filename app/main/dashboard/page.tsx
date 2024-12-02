@@ -168,6 +168,7 @@ export default function Dashboard() {
               label="Categories"
               placeholder="Select a category"
               labelPlacement="inside"
+              radius="none"
               classNames={{
                 base: "max-w-xs",
                 trigger: "h-12 bg-transparent",
