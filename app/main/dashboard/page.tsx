@@ -145,7 +145,7 @@ export default function Dashboard() {
   }, [successMessage, setSuccessMessage]);
 
   return (
-    <div className="flex w-full h-screen bg-white-50 font-poppins overflow-y-scroll scrollbar-hide">
+    <div className="flex w-full h-[850px] lg:h-screen bg-white-50 font-poppins overflow-y-scroll scrollbar-hide">
       <div className="flex w-full flex-col items-center relative">
         <div className="flex mt-10">
           <label className="flex text-4xl font-bold items-center">
@@ -227,7 +227,7 @@ export default function Dashboard() {
             Add
           </Button>
         </div>
-        <Button onPress={openSidebarModal} className="bg-purple-100 text-white mt-4 flex lg:hidden" size="lg" radius="sm" isIconOnly>
+        <Button onPress={openSidebarModal} className="bg-purple-100 text-white mt-4 flex lg:hidden" radius="sm" isIconOnly>
           <RxHamburgerMenu size={20}/>
         </Button>
         <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8 overflow-y-scroll scrollbar-hide">
