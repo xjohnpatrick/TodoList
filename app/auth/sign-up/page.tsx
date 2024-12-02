@@ -42,9 +42,7 @@ export default function SignUpPage() {
       setError(
         "You must agree to the Terms and Conditions and Privacy Policy."
       );
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+      setTimeout(() => setError(""), 3000);
       return;
     }
 

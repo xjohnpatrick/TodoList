@@ -219,7 +219,7 @@ export default function Dashboard() {
             Add
           </Button>
         </div>
-        <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8 bg-red-200">
+        <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8 overflow-y-scroll scrollbar-hide">
           <div className="flex relative w-full mt-6 xl:mt-10 xl:mb-4">
             <div className="flex">
               <div className="flex gap-2 text-xs xl:text-sm absolute left-0">
