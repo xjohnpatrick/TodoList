@@ -7,10 +7,8 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable}`}>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <body className={`${poppins.variable}`}>{children}</body>
+      </html>
   );
 }

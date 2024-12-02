@@ -10,9 +10,11 @@ import { Button } from "@nextui-org/button";
 import { Checkbox } from "@nextui-org/checkbox";
 import ModalPrivacy from "@/components/modal/ModalPrivacy";
 import ModalTerms from "@/components/modal/ModalTerms";
+import { useRouter } from "next/navigation";
+import { useSuccessMessage } from "@/context/SuccessMessageContext";
 
 export default function SignUpPage() {
-  const [username, setUsername] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
   const [password, setPassword] = useState<string>("");
@@ -20,6 +22,7 @@ export default function SignUpPage() {
 
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [error, setError] = useState("");
+  const { setSuccessMessage } = useSuccessMessage();
 
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
@@ -30,7 +33,11 @@ export default function SignUpPage() {
   const openTermsModal = () => setIsTermsModalOpen(true);
   const closeTermsModal = () => setIsTermsModalOpen(false);
 
-  const handleSignup = () => {
+  const router = useRouter();
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (!checkboxChecked) {
       setError(
         "You must agree to the Terms and Conditions and Privacy Policy."
@@ -40,11 +47,40 @@ export default function SignUpPage() {
       }, 3000);
       return;
     }
+
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Successful sign-up
+        setSuccessMessage("Account created successfully");
+        setFirstName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+
+        router.push("/auth/sign-in");
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+    }
+
+    setTimeout(() => setError(""), 5000);
   };
 
   const clearInput = () => {
     setEmail("");
-    setUsername("");
+    setFirstName("");
   };
   return (
     <div className="flex flex-col bg-white-50 w-full h-screen justify-center items-center font-poppins gap-4">
@@ -62,9 +98,9 @@ export default function SignUpPage() {
           <div className="flex flex-col w-full gap-5 relative mt-4">
             {[
               {
-                label: "Username",
+                label: "First Name",
                 type: "text",
-                placeholder: "Username",
+                placeholder: "First Name",
                 icon: (
                   <FaUser
                     className="absolute left-3 top-4 text-white"
@@ -72,10 +108,11 @@ export default function SignUpPage() {
                   />
                 ),
                 isClearable: true,
-                value: username,
+                value: firstName,
                 onChange: (e: {
                   target: { value: React.SetStateAction<string> };
-                }) => setUsername(e.target.value),
+                }) => setFirstName(e.target.value),
+                className: "capitalize ",
               },
               {
                 label: "Email",
@@ -130,7 +167,7 @@ export default function SignUpPage() {
                   type={item.type}
                   value={item.value}
                   onChange={item.onChange}
-                  className="flex w-full bg-purple-100 text-white outline-none py-3.5 pl-10 pr-3 placeholder:text-transparent rounded-md"
+                  className={`flex w-full bg-purple-100 text-white outline-none py-3.5 pl-10 pr-3 placeholder:text-transparent rounded-md ${item.className}`}
                   placeholder={item.placeholder}
                   required
                 />

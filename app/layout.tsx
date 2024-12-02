@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/app/fonts/fonts"
+import { SuccessMessageProvider } from "@/context/SuccessMessageContext";
 
 export const metadata: Metadata = {
   title: {
@@ -15,12 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${poppins.variable}`}
-      >
-        {children}
-      </body>
-    </html>
+    <SuccessMessageProvider>
+      <html lang="en">
+        <body className={`${poppins.variable}`}>{children}</body>
+      </html>
+    </SuccessMessageProvider>
   );
 }

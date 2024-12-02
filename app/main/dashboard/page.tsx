@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@nextui-org/button";
 import { IoMdRocket } from "react-icons/io";
 import { FaLock, FaUnlock } from "react-icons/fa6";
@@ -20,6 +20,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import { useSuccessMessage } from "@/context/SuccessMessageContext";
 
 export default function Dashboard() {
   const { categories } = useCategories();
@@ -38,6 +39,8 @@ export default function Dashboard() {
       setSelectedCategory(category); // Set the selected category
     }
   };
+
+  const { successMessage, setSuccessMessage } = useSuccessMessage();
 
   const [tasks, setTasks] = useState([
     {
@@ -127,6 +130,13 @@ export default function Dashboard() {
     currentPage * tasksPerPage
   );
 
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => setSuccessMessage(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage, setSuccessMessage]);
+
   return (
     <div className="flex w-full h-screen bg-white-50 font-poppins">
       <div className="flex w-full flex-col items-center relative">
@@ -149,7 +159,7 @@ export default function Dashboard() {
                 }
               }}
               value={todo}
-              className="flex rounded-md bg-purple text-purple-300 p-4 h-[54px] outline-none w-full sm:w-[450px] md:w-[550px] lg:w-[655px] shadow-md shadow-gray/50"
+              className="flex rounded-md bg-purple text-purple-300 py-4 pl-4 pr-20 sm:pr-48 h-[54px] outline-none w-full sm:w-[450px] md:w-[550px] lg:w-[655px] shadow-md shadow-gray/50"
               placeholder="Add a new task"
             />
 
@@ -209,7 +219,7 @@ export default function Dashboard() {
             Add
           </Button>
         </div>
-        <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8">
+        <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8 bg-red-200">
           <div className="flex relative w-full mt-6 xl:mt-10 xl:mb-4">
             <div className="flex">
               <div className="flex gap-2 text-xs xl:text-sm absolute left-0">
@@ -330,6 +340,11 @@ export default function Dashboard() {
           </Modal>
         </div>
       </div>
+      {successMessage && (
+        <div className="flex text-white bg-green-500 rounded-md p-4 text-sm fixed bottom-4 right-6">
+          <p>{successMessage}</p>
+        </div>
+      )}
     </div>
   );
 }
