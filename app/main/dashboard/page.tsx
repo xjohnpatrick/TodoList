@@ -145,7 +145,7 @@ export default function Dashboard() {
   }, [successMessage, setSuccessMessage]);
 
   return (
-    <div className="flex w-full h-[850px] lg:h-screen bg-white-50 font-poppins overflow-y-scroll scrollbar-hide">
+    <div className="flex w-full h-auto lg:h-screen bg-white-50 font-poppins overflow-y-scroll scrollbar-hide">
       <div className="flex w-full flex-col items-center relative">
         <div className="flex mt-10">
           <label className="flex text-4xl font-bold items-center">
