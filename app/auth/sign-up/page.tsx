@@ -219,11 +219,9 @@ export default function SignUpPage() {
             </Button>
           </div>
 
-          {error && (
-            <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-6">
-              <p>{error}</p>
-            </div>
-          )}
+          <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-6">
+            {error && <p>{error}</p>}
+          </div>
         </form>
 
         <Link href="/auth/sign-in" className="flex justify-center mt-4">
