@@ -71,7 +71,7 @@ export default function Dashboard() {
   ]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const tasksPerPage = 5; // Number of tasks per page
+  const tasksPerPage = 6; // Number of tasks per page
   const maxPages = 10; // Maximum number of pages
 
   const handleAddTodo = () => {
