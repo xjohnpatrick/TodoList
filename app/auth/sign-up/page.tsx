@@ -219,8 +219,12 @@ export default function SignUpPage() {
             </Button>
           </div>
 
-          <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-6">
-            {error && <p>{error}</p>}
+          <div
+            className={`absolute bottom-4 right-6 ${
+              error ? "flex" : "hidden"
+            } text-white bg-red-500 rounded-md p-4 text-sm`}
+          >
+            <p>{error}</p>
           </div>
         </form>
 
