@@ -11,6 +11,7 @@ import { useCategories } from "@/context/CategoryContext";
 import { Select, SelectedItems, SelectItem } from "@nextui-org/select";
 import { TbHome } from "react-icons/tb";
 import { Category } from "@/context/CategoryContext";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import {
   Modal,
@@ -21,6 +22,7 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { useSuccessMessage } from "@/context/SuccessMessageContext";
+import ModalSidebar from "@/components/modal/ModalSidebar";
 
 export default function Dashboard() {
   const { categories } = useCategories();
@@ -39,6 +41,11 @@ export default function Dashboard() {
       setSelectedCategory(category); // Set the selected category
     }
   };
+
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const openSidebarModal = () => setSidebarOpen(true);
+  const closeSidebarModal = () => setSidebarOpen(false);
 
   const { successMessage, setSuccessMessage } = useSuccessMessage();
 
@@ -220,6 +227,9 @@ export default function Dashboard() {
             Add
           </Button>
         </div>
+        <Button onPress={openSidebarModal} className="bg-purple-100 text-white mt-4 flex lg:hidden" size="lg" radius="sm" isIconOnly>
+          <RxHamburgerMenu size={20}/>
+        </Button>
         <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8 overflow-y-scroll scrollbar-hide">
           <div className="flex relative w-full mt-6 xl:mt-10 xl:mb-4">
             <div className="flex">
@@ -316,29 +326,6 @@ export default function Dashboard() {
               cursor: "bg-purple-100 text-white font-bold",
             }}
           />
-          <Modal
-            isOpen={isOpen}
-            onOpenChange={onClose}
-            className="font-poppins"
-          >
-            <ModalContent>
-              {(onClose) => (
-                <>
-                  <ModalHeader className="flex flex-col gap-1">
-                    Error
-                  </ModalHeader>
-                  <ModalBody>
-                    <p>{errorMessage}</p>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="danger" variant="light" onPress={onClose}>
-                      Close
-                    </Button>
-                  </ModalFooter>
-                </>
-              )}
-            </ModalContent>
-          </Modal>
         </div>
       </div>
       {successMessage && (
@@ -346,6 +333,29 @@ export default function Dashboard() {
           <p>{successMessage}</p>
         </div>
       )}
+
+      <ModalSidebar
+        isSidebarOpen={isSidebarOpen}
+        onSidebarChange={closeSidebarModal}
+      />
+
+      <Modal isOpen={isOpen} onOpenChange={onClose} className="font-poppins">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Error</ModalHeader>
+              <ModalBody>
+                <p>{errorMessage}</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
