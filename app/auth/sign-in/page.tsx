@@ -8,7 +8,7 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useSuccessMessage } from "@/context/SuccessMessageContext";
 
 export default function SignInPage() {
@@ -16,39 +16,39 @@ export default function SignInPage() {
   const [password, setPassword] = useState<string>("");
   const { successMessage, setSuccessMessage } = useSuccessMessage();
 
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const clearInput = () => {
     setEmail("");
   };
 
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:3001/api/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+  // const handleSignIn = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch("http://localhost:3001/api/auth/signin", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ email, password }),
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (response.ok) {
-        setSuccessMessage("Login Successfully")
-        router.push("/main/dashboard");
-      } else {
-        setError(data.message);
-      }
-    } catch (error) {
-      setError("An error occurred. Please try again.");
-    }
+  //     if (response.ok) {
+  //       setSuccessMessage("Login Successfully")
+  //       router.push("/main/dashboard");
+  //     } else {
+  //       setError(data.message);
+  //     }
+  //   } catch (error) {
+  //     setError("An error occurred. Please try again.");
+  //   }
 
-    setTimeout(() => setError(""), 5000);
-  };
+  //   setTimeout(() => setError(""), 5000);
+  // };
 
   useEffect(() => {
     if (successMessage) {
@@ -152,11 +152,11 @@ export default function SignInPage() {
             </div>{" "}
           </Link>
 
-          {error && (
+          {/* {error && (
             <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-6">
               <p>{error}</p>
             </div>
-          )}
+          )} */}
 
           {successMessage && (
             <div className="flex text-white bg-green-500 rounded-md p-4 text-sm fixed bottom-4 right-6">
