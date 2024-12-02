@@ -216,15 +216,14 @@ export default function SignUpPage() {
               Sign Up
             </Button>
           </div>
-
-          <div
-            className={`absolute bottom-4 right-6 ${
-              error ? "flex" : "hidden"
-            } text-white bg-red-500 rounded-md p-4 text-sm`}
-          >
-            <p>{error}</p>
-          </div>
         </form>
+        <div
+          className={`absolute bottom-4 right-6 ${
+            error ? "flex" : "hidden"
+          } text-white bg-red-500 rounded-md p-4 text-sm`}
+        >
+          <p>{error}</p>
+        </div>
 
         <Link href="/auth/sign-in" className="flex justify-center mt-4">
           <button className="hover:underline text-sm lg:text-base">
