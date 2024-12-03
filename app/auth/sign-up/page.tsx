@@ -218,7 +218,7 @@ export default function SignUpPage() {
           </div>
           
           {error && (
-            <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-6">
+            <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-0 sm:right-6">
               <p>{error}</p>
             </div>
           )}

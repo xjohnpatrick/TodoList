@@ -74,95 +74,92 @@ export default function SignInPage() {
 
       <div className="flex flex-col w-[320px]">
         {/* <form onSubmit={handleSignIn}> */}
-          <div className="flex flex-col w-full px-4 gap-5 relative mt-4">
-            {[
-              {
-                label: "Email",
-                type: "email",
-                placeholder: "Email",
-                icon: (
-                  <IoMail
-                    className="absolute left-3 top-4 text-white"
-                    size={18}
-                  />
-                ),
-                isEmail: true,
-                value: email,
-                onChange: (e: {
-                  target: { value: React.SetStateAction<string> };
-                }) => setEmail(e.target.value),
-              },
-              {
-                label: "Password",
-                type: "password",
-                placeholder: "Password",
-                icon: (
-                  <FaKey
-                    className="absolute left-3 top-4 text-white"
-                    size={18}
-                  />
-                ),
-                onChange: (e: {
-                  target: { value: React.SetStateAction<string> };
-                }) => setPassword(e.target.value),
-                value: password,
-              },
-            ].map((item, index) => (
-              <div key={index} className="flex relative custom-password-field">
-                {item.icon}
-                <input
-                  type={item.type}
-                  value={item.value}
-                  onChange={item.onChange}
-                  className="flex w-full bg-purple-100 text-white outline-none py-3.5 pl-10 pr-3 placeholder:text-transparent rounded-md"
-                  placeholder={item.placeholder}
-                  // required
+        <div className="flex flex-col w-full px-4 gap-5 relative mt-4">
+          {[
+            {
+              label: "Email",
+              type: "email",
+              placeholder: "Email",
+              icon: (
+                <IoMail
+                  className="absolute left-3 top-4 text-white"
+                  size={18}
                 />
-                <label className="absolute left-10 top-3.5 text-white/70 transition-all duration-200 ease-out pointer-events-none">
-                  {item.label}
-                </label>
-                {item.isEmail && item.value && (
-                  <IoCloseCircle
-                    className={`absolute right-3 top-4 text-white cursor-pointer`}
-                    size={18}
-                    onClick={clearInput}
-                  />
-                )}
-              </div>
-            ))}
-            <Link href="/auth/forgot-password" className="mt-2">
-              <button
-                type="button"
-                className="flex text-purple-300 text-xs absolute bottom-0 right-5 hover:underline"
-              >
-                Forgot your password?
-              </button>
-            </Link>
-          </div>
-
-          <Link href="/main/dashboard">
-            <div className="flex relative justify-center w-full px-4 mt-4">
-              <Button
-                type="submit"
-                size="lg"
-                className="flex bg-purple-300 text-white w-full rounded-md justify-center p-3"
-              >
-                Log In
-              </Button>
-            </div>{" "}
+              ),
+              isEmail: true,
+              value: email,
+              onChange: (e: {
+                target: { value: React.SetStateAction<string> };
+              }) => setEmail(e.target.value),
+            },
+            {
+              label: "Password",
+              type: "password",
+              placeholder: "Password",
+              icon: (
+                <FaKey className="absolute left-3 top-4 text-white" size={18} />
+              ),
+              onChange: (e: {
+                target: { value: React.SetStateAction<string> };
+              }) => setPassword(e.target.value),
+              value: password,
+            },
+          ].map((item, index) => (
+            <div key={index} className="flex relative custom-password-field">
+              {item.icon}
+              <input
+                type={item.type}
+                value={item.value}
+                onChange={item.onChange}
+                className="flex w-full bg-purple-100 text-white outline-none py-3.5 pl-10 pr-3 placeholder:text-transparent rounded-md"
+                placeholder={item.placeholder}
+                // required
+              />
+              <label className="absolute left-10 top-3.5 text-white/70 transition-all duration-200 ease-out pointer-events-none">
+                {item.label}
+              </label>
+              {item.isEmail && item.value && (
+                <IoCloseCircle
+                  className={`absolute right-3 top-4 text-white cursor-pointer`}
+                  size={18}
+                  onClick={clearInput}
+                />
+              )}
+            </div>
+          ))}
+          <Link href="/auth/forgot-password" className="mt-2">
+            <button
+              type="button"
+              className="flex text-purple-300 text-xs absolute bottom-0 right-5 hover:underline"
+            >
+              Forgot your password?
+            </button>
           </Link>
+        </div>
 
-          {/* {error && (
-            <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-6">
+        <Link href="/main/dashboard">
+          <div className="flex relative justify-center w-full px-4 mt-4">
+            <Button
+              type="submit"
+              size="lg"
+              className="flex bg-purple-300 text-white w-full rounded-md justify-center p-3"
+            >
+              Log In
+            </Button>
+          </div>{" "}
+        </Link>
+
+        {/* {error && (
+            <div className="flex text-white bg-red-500 rounded-md p-4 text-sm absolute bottom-4 right-0 sm:right-6">
               <p>{error}</p>
             </div>
           )} */}
 
-          {successMessage && (
-            <div className="flex text-white bg-green-500 rounded-md p-4 text-sm fixed bottom-4 right-6">
-              <p>{successMessage}</p>
-            </div>
-          )}
+        {successMessage && (
+          <div className="flex text-white bg-green-500 rounded-md p-4 text-sm fixed bottom-4 right-6">
+            <p>{successMessage}</p>
+          </div>
+        )}
         {/* </form> */}
 
         <div className="flex my-10 justify-center items-center gap-7">
