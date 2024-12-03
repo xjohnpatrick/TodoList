@@ -166,7 +166,7 @@ export default function Dashboard() {
                 }
               }}
               value={todo}
-              className="flex rounded-md bg-purple text-purple-300 py-4 pl-4 pr-20 sm:pr-48 h-[54px] outline-none w-full sm:w-[450px] md:w-[550px] lg:w-[655px] shadow-md shadow-gray/50"
+              className="flex rounded-md bg-purple text-purple-300 py-4 pl-4 pr-20 sm:pr-48 h-[54px] outline-none w-full sm:w-[450px] md:w-[550px] lg:w-[655px] shadow-md shadow-gray/50 capitalize"
               placeholder="Add a new task"
             />
 
