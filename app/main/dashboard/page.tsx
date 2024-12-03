@@ -227,14 +227,6 @@ export default function Dashboard() {
             Add
           </Button>
         </div>
-        <Button
-          onPress={openSidebarModal}
-          className="bg-purple-100 text-white mt-8 flex lg:hidden"
-          radius="sm"
-          isIconOnly
-        >
-          <RxHamburgerMenu size={20} />
-        </Button>
         <div className="flex relative w-[90vw] sm:w-[600px] md:w-[700px] lg:w-[800px] h-[780px] flex-col items-center rounded-lg my-6 sm:px-8 overflow-y-scroll scrollbar-hide">
           <div className="flex relative w-full mt-6 xl:mt-10 xl:mb-4">
             <div className="flex">
@@ -361,6 +353,15 @@ export default function Dashboard() {
           )}
         </ModalContent>
       </Modal>
+
+      <Button
+        onPress={openSidebarModal}
+        className="bg-purple-100 text-white flex lg:hidden fixed bottom-5 right-5"
+        radius="sm"
+        isIconOnly
+      >
+        <RxHamburgerMenu size={20} />
+      </Button>
     </div>
   );
 }
