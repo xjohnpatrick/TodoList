@@ -10,13 +10,13 @@ import Link from "next/link";
 export default function ForgotPassword() {
   return (
     <div className="bg-white-50 w-full flex h-screen justify-center items-center font-poppins">
-      <div className="flex flex-col w-[20vw] h-[60vh] bg-white rounded-xl p-8">
+      <div className="flex flex-col w-[320px] lg:w-[350px] h-[600px] bg-white rounded-xl p-8">
         <div className="flex items-center text-4xl font-bold">
           <IoMdRocket width={22} height={36} color="#839dd1" />
           <span className="text-purple-300">to</span>
           <span className="text-purple-200">do</span>
         </div>
-        <div className="flex flex-col mt-20 gap-4">
+        <div className="flex flex-col mt-10 lg:mt-20 gap-4">
           <Link href="/auth/sign-in">
             <button className="flex items-center w-28 h-5 text-[12px] hover:underline gap-2">
               <IoIosArrowBack />

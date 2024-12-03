@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function VerifyEmail() {
   return (
     <div className="bg-white-50 w-full flex h-screen justify-center items-center font-poppins">
-      <div className="flex flex-col w-[20vw] h-[60vh] bg-white rounded-xl p-8">
+      <div className="flex flex-col w-[320px] lg:w-[350px] h-[500px] bg-white rounded-xl p-8">
         <div className="flex items-center text-4xl font-bold">
           <IoMdRocket width={22} height={36} color="#839dd1" />
           <span className="text-purple-300">to</span>
