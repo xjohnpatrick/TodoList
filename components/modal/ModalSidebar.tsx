@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaSquarePlus } from "react-icons/fa6";
 import { PiTrashFill } from "react-icons/pi";
@@ -36,7 +36,6 @@ export default function ModalSidebar({
   onSidebarChange,
 }: ModalSidebarProps) {
   const [isNavOpen, setisNavOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [newCategory, setNewCategory] = useState("");
   const [editCategoryMode, setEditCategoryMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
@@ -49,12 +48,6 @@ export default function ModalSidebar({
   } = useCategories();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    if (!isNavOpen) {
-      setIsSettingsOpen(false);
-    }
-  }, [isNavOpen]);
   return (
     <>
       <Modal
