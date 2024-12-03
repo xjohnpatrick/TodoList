@@ -5,14 +5,21 @@ import { Button } from '@nextui-org/button';
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import ModalDeleteAcc from '@/components/modal/ModalDeleteAcc';
+import { RxHamburgerMenu } from "react-icons/rx";
+import ModalSidebar from '@/components/modal/ModalSidebar';
 
 export default function Account() {
     const [isModalDeleteOpen, setModalDeleteOpen] = useState(false);
 
     const openModalDelete = () => setModalDeleteOpen(true);
     const closeModalDelete = () => setModalDeleteOpen(false);
+
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+    const openSidebarModal = () => setSidebarOpen(true);
+    const closeSidebarModal = () => setSidebarOpen(false);
   return (
-    <div className="flex w-full h-screen bg-white-50 justify-center font-poppins">
+    <div className="flex w-full h-[1000px] lg:h-screen bg-white-50 justify-center font-poppins">
       <div className="flex flex-col items-center w-[90vw] lg:w-[45vw] h-[90vh] rounded-md gap-4 mt-4">
         {[
           {
@@ -109,6 +116,20 @@ export default function Account() {
           onOpenChange={closeModalDelete}
         />
       </div>
+
+      <Button
+        onPress={openSidebarModal}
+        className="bg-purple-100 text-white flex lg:hidden fixed bottom-5 right-5"
+        radius="sm"
+        isIconOnly
+      >
+        <RxHamburgerMenu size={20} />
+      </Button>
+
+      <ModalSidebar
+        isSidebarOpen={isSidebarOpen}
+        onSidebarChange={closeSidebarModal}
+      />
     </div>
   );
 }

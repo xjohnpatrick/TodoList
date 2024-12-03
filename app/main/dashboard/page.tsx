@@ -331,11 +331,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      <ModalSidebar
-        isSidebarOpen={isSidebarOpen}
-        onSidebarChange={closeSidebarModal}
-      />
-
       <Modal isOpen={isOpen} onOpenChange={onClose} className="font-poppins">
         <ModalContent>
           {(onClose) => (
@@ -362,6 +357,11 @@ export default function Dashboard() {
       >
         <RxHamburgerMenu size={20} />
       </Button>
+
+      <ModalSidebar
+        isSidebarOpen={isSidebarOpen}
+        onSidebarChange={closeSidebarModal}
+      />
     </div>
   );
 }

@@ -1,8 +1,10 @@
 "use client";
+import ModalSidebar from "@/components/modal/ModalSidebar";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import Image from "next/image";
 import React, { useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Profile() {
   const [imageSrc, setImageSrc] = useState<string>("/patrick.jpeg");
@@ -24,6 +26,11 @@ export default function Profile() {
     const fileInput = document.getElementById("fileInput") as HTMLInputElement;
     fileInput?.click();
   };
+
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const openSidebarModal = () => setSidebarOpen(true);
+  const closeSidebarModal = () => setSidebarOpen(false);
   return (
     <div className="flex w-full h-screen bg-white-50 justify-center items-center font-poppins">
       <div className="flex flex-col lg:flex-row items-center w-[90vw] md:w-[70vw] lg:w-[55vw] lg:h-[60vh] rounded-md gap-4 overflow-y-scroll scrollbar-hide">
@@ -93,6 +100,20 @@ export default function Profile() {
           </div>
         </div>
       </div>
+
+      <Button
+        onPress={openSidebarModal}
+        className="bg-purple-100 text-white flex lg:hidden fixed bottom-5 right-5"
+        radius="sm"
+        isIconOnly
+      >
+        <RxHamburgerMenu size={20} />
+      </Button>
+
+      <ModalSidebar
+        isSidebarOpen={isSidebarOpen}
+        onSidebarChange={closeSidebarModal}
+      />
     </div>
   );
 }
