@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="flex w-full h-40 lg:h-56 font-poppins flex-col bg-purple-400">
+    <footer className="flex w-full h-56 font-poppins flex-col bg-purple-400">
       <div className="flex flex-col w-full h-full justify-center gap-4">
         <div className="flex w-full gap-4 sm:gap-6 lg:gap-10 justify-center">
           {footerIcons.map((icon) => (
@@ -24,7 +24,7 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center w-full gap-4">
+        <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-4">
           {[
             {
               label: "Terms and Conditions",
