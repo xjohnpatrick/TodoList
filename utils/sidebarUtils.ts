@@ -25,6 +25,20 @@ export const addCategory = (
     );
     onOpen();
     return;
+  } else if (!newCategory.trim()) {
+    setErrorMessage("Category name cannot be empty!");
+    onOpen(); // Open the error modal
+    return;
+  }
+
+  const isDuplicate = categories.some(
+    (category) => category.label.toLowerCase() === newCategory.toLowerCase()
+  );
+
+  if (isDuplicate) {
+    setErrorMessage("This category already exists!");
+    onOpen(); // Open the error modal
+    return;
   }
 
   if (newCategory.trim() !== "") {

@@ -71,7 +71,7 @@ export default function Sidebar() {
   return (
     <>
       <motion.div
-        className="absolute top-0 left-0 h-full bg-purple text-white w-64 px-4 py-5 shadow-md shadow-gray/50 z-10 font-poppins hidden lg:block overflow-y-scroll scrollbar-hide"
+        className="fixed top-0 left-0 h-full bg-purple text-white w-64 px-4 py-5 shadow-md shadow-gray/50 z-10 font-poppins hidden lg:block overflow-y-scroll scrollbar-hide"
         initial="closed"
         animate={isNavOpen ? "open" : "closed"}
         variants={sidebarVariants}

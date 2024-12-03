@@ -19,8 +19,8 @@ export default function Account() {
     const openSidebarModal = () => setSidebarOpen(true);
     const closeSidebarModal = () => setSidebarOpen(false);
   return (
-    <div className="flex w-full h-[1000px] lg:h-screen bg-white-50 justify-center font-poppins">
-      <div className="flex flex-col items-center w-[90vw] lg:w-[45vw] h-[90vh] rounded-md gap-4 mt-4">
+    <div className="flex w-full h-[1000px] bg-white-50 justify-center font-poppins overflow-y-auto lg:overflow-y-scroll">
+      <div className="flex flex-col items-center w-[90vw] lg:w-[45vw] h-full rounded-md gap-4 mt-4">
         {[
           {
             label: "Connect Google",
