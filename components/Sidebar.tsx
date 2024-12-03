@@ -24,6 +24,13 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import {
+  toggleEditMode,
+  addCategory,
+  deleteCategory,
+  editCategory,
+  saveCategory,
+} from "@/utils/sidebarUtils";
 
 const sidebarVariants = {
   open: { x: 0, transition: { type: "spring", stiffness: 100 } },
@@ -44,59 +51,22 @@ export default function Sidebar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [newCategory, setNewCategory] = useState("");
   const [editCategoryMode, setEditCategoryMode] = useState(false);
-  const [editingIndex, setEditingIndex] = useState<number | null>(null); // Index of the category being edited
-  const [editedText, setEditedText] = useState(""); // Current text being edited
-  const { categories, addCategory, deleteCategory, updateCategory } =
-    useCategories();
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editedText, setEditedText] = useState("");
+  const {
+    categories,
+    addCategory: addCategoryFn,
+    deleteCategory: deleteCategoryFn,
+    updateCategory: updateCategoryFn,
+  } = useCategories();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     if (!isNavOpen) {
       setIsSettingsOpen(false);
     }
   }, [isNavOpen]);
-
-  const handleToggleEditMode = () => {
-    // Reset edit state when exiting edit mode
-    if (editCategoryMode) {
-      setEditingIndex(null); // Cancel the edit
-      setEditedText(""); // Clear any edited text
-    }
-    setEditCategoryMode((prev) => !prev); // Toggle edit mode
-  };
-
-  const handleAddCategory = () => {
-    if (categories.length >= 15) {
-      setErrorMessage(
-        "You have reached the maximum limit of 15 categories. Please delete some categories."
-      );
-      onOpen(); // Open the modal with error message
-      return;
-    }
-    
-    if (newCategory.trim() !== "") {
-      addCategory(newCategory); // Pass only the label (a string), not the entire object
-      setNewCategory(""); // Clear the input field after adding
-    }
-  };
-
-  const handleDeleteCategory = (index: number) => {
-    deleteCategory(index); // Pass the index of the category to delete
-  };
-
-  const handleEditCategory = (index: number, label: string) => {
-    if (editCategoryMode) {
-      setEditingIndex(index); // Set the index of the category being edited
-      setEditedText(label); // Set the initial text to the current label
-    }
-  };
-
-  const handleSaveCategory = (index: number) => {
-    if (editedText.trim() !== "") {
-      updateCategory(index, { ...categories[index], label: editedText });
-    }
-    setEditingIndex(null); // Exit edit mode
-  };
 
   return (
     <>
@@ -155,7 +125,14 @@ export default function Sidebar() {
                   </span>
                   <button
                     className="text-purple-400"
-                    onClick={handleToggleEditMode}
+                    onClick={() =>
+                      toggleEditMode(
+                        editCategoryMode,
+                        setEditingIndex,
+                        setEditedText,
+                        setEditCategoryMode
+                      )
+                    }
                   >
                     {editCategoryMode ? (
                       <IoMdClose size={22} />
@@ -174,7 +151,14 @@ export default function Sidebar() {
                     onChange={(e) => setNewCategory(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
-                        handleAddCategory();
+                        addCategory(
+                          newCategory,
+                          categories,
+                          setErrorMessage,
+                          onOpen,
+                          addCategoryFn,
+                          setNewCategory
+                        );
                       }
                     }}
                     maxLength={30}
@@ -186,7 +170,14 @@ export default function Sidebar() {
                         isIconOnly
                         size="sm"
                         className="bg-transparent"
-                        onClick={handleAddCategory}
+                        onClick={() => addCategory(
+                          newCategory,
+                          categories,
+                          setErrorMessage,
+                          onOpen,
+                          addCategoryFn,
+                          setNewCategory
+                        )}
                       >
                         <FaSquarePlus size={24} color="#4a5989" />
                       </Button>
@@ -208,7 +199,14 @@ export default function Sidebar() {
                           value={editedText}
                           onChange={(e) => setEditedText(e.target.value)}
                           onKeyDown={(e) => {
-                            if (e.key === "Enter") handleSaveCategory(index); // Save on Enter
+                            if (e.key === "Enter")
+                              saveCategory(
+                                index,
+                                editedText,
+                                categories,
+                                updateCategoryFn,
+                                setEditingIndex
+                              ); // Save on Enter
                             if (e.key === "Escape") setEditingIndex(null); // Cancel on Escape
                           }}
                           className="flex-grow text-sm text-purple-400 bg-white p-2 rounded-md outline-none"
@@ -220,7 +218,12 @@ export default function Sidebar() {
                           size="md"
                           onClick={() => {
                             if (editCategoryMode) {
-                              handleEditCategory(index, item.label); // Allow editing in edit mode
+                              editCategory(
+                                index,
+                                item.label,
+                                setEditingIndex,
+                                setEditedText
+                              );
                             }
                           }}
                         >
@@ -230,7 +233,9 @@ export default function Sidebar() {
                       )}
                       {editCategoryMode && (
                         <Button
-                          onClick={() => handleDeleteCategory(index)}
+                          onClick={() =>
+                            deleteCategory(index, deleteCategoryFn)
+                          }
                           isIconOnly
                           size="sm"
                           className="bg-transparent"
