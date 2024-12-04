@@ -75,6 +75,11 @@ export default function Dashboard() {
   const maxPages = 10; // Maximum number of pages
 
   const handleAddTodo = () => {
+    if (todo === "") {
+      setErrorMessage("Task input cannot be empty!");
+      onOpen();
+      return;
+    }
     if (todo.trim()) {
       if (!selectedCategory) {
         setErrorMessage("Please select a category.");
