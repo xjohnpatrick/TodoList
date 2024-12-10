@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function HomepageBody() {
   return (
-    <div className="flex flex-col w-full h-[1100px] lg:h-screen font-poppins">
+    <div className="flex flex-col w-full h-[1100px] font-poppins">
       <div className="flex flex-col w-full bg-gray/10 h-96 lg:h-[600px] p-4 justify-center">
         {[
           {
