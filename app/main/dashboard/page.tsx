@@ -265,7 +265,9 @@ export default function Dashboard() {
                 }`}
               >
                 <li
-                  className="flex items-center justify-between p-4 w-full h-16 lg:h-20 cursor-pointer"
+                  className={`flex items-center justify-between p-4 w-full h-16 lg:h-20 overflow-hidden ${
+                    task.locked ? "cursor-auto" : "cursor-pointer"
+                  }`}
                   onClick={() =>
                     handleToggleComplete(
                       index + (currentPage - 1) * tasksPerPage
