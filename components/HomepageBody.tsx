@@ -6,6 +6,7 @@ import { IoMdRocket } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
 
 import { Button } from "@nextui-org/button";
+import Link from "next/link";
 
 export default function HomepageBody() {
   return (
@@ -74,9 +75,11 @@ export default function HomepageBody() {
                 )}
               </div>
             ))}
-            <Button className="flex w-40 mt-4 bg-purple-200 rounded-full text-white p-3 lg:p-4">
-              Sign Up Here <FaArrowRight />
-            </Button>
+            <Link href="/auth/sign-up">
+              <Button className="flex w-40 mt-4 bg-purple-200 rounded-full text-white p-3 lg:p-4">
+                Sign Up Here <FaArrowRight />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="flex justify-center w-full h-full lg:h-[450px] xl:h-[600px] 2xl:h-[620px] px-4 py-6">
