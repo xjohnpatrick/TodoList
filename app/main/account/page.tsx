@@ -19,7 +19,7 @@ export default function Account() {
     const openSidebarModal = () => setSidebarOpen(true);
     const closeSidebarModal = () => setSidebarOpen(false);
   return (
-    <div className="flex w-full h-[1000px] bg-white-50 justify-center font-poppins">
+    <div className="flex w-full h-screen bg-white-50 justify-center font-poppins">
       <div className="flex flex-col items-center w-[90vw] lg:w-[45vw] h-full rounded-md gap-4 pt-4">
         {[
           {
