@@ -142,7 +142,7 @@ export default function HomepageBody() {
                   text2: "Completed",
                   icon1: <FaUnlock size={14} />,
                   icon2: <CgTrash size={18} />,
-                  className: "bg-purple-400",
+                  className: "bg-purple-400 line-through",
                 },
                 {
                   text: "Schedule team meeting",
