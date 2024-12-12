@@ -4,6 +4,7 @@ import { FaUnlock } from "react-icons/fa";
 import { CgTrash } from "react-icons/cg";
 import { IoMdRocket } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
+import { BsFillCheckSquareFill } from "react-icons/bs";
 
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
@@ -158,8 +159,8 @@ export default function HomepageBody() {
                     <span className="flex text-[14px]">{item.text}</span>
                     <div className="flex gap-2">
                       {item.text2 && (
-                        <span className="bg-green-600 px-0.5 rounded-md text-[10px] sm:text-xs md:text-sm">
-                          {item.text2}
+                        <span className="mr-1 text-[10px] sm:text-xs md:text-sm">
+                          <BsFillCheckSquareFill className="w-4 h-4 mt-0.5 text-green-500" />
                         </span>
                       )}
                       <button>{item.icon1}</button>
