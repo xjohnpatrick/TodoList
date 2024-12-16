@@ -40,7 +40,7 @@ export default function Footer() {
             },
             {
               label: "About Us",
-              href: "#",
+              href: "/homepage/about-us",
             },
           ].map((item, index) => (
             <div key={index}>
