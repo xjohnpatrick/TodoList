@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FaLock } from "react-icons/fa6";
 import { FaUnlock } from "react-icons/fa";
@@ -8,6 +9,20 @@ import { BsFillCheckSquareFill } from "react-icons/bs";
 
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+import { TbHome } from "react-icons/tb";
+import { MdCategory, MdOutlineWorkOutline } from "react-icons/md";
+import { Select, SelectedItems, SelectItem } from "@nextui-org/select";
+import { Category } from "@/context/CategoryContext";
+
+export const categories = [
+  { key: "home", label: "Buy Groceries", icon: <TbHome size={22} /> },
+  { key: "personal", label: "Clean the house", icon: <MdCategory size={22} /> },
+  {
+    key: "office",
+    label: "Schedule team meeting",
+    icon: <MdOutlineWorkOutline size={22} />,
+  },
+];
 
 export default function HomepageBody() {
   return (
@@ -96,11 +111,60 @@ export default function HomepageBody() {
             </div>
 
             <div className="flex gap-2 w-full">
-              <input
-                type="text"
-                className="p-1.5 sm:px-3 rounded-md bg-white-100 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50"
-                placeholder="Add a new task"
-              />
+              <div className="flex relative w-full">
+                <input
+                  type="text"
+                  className="p-1.5 sm:px-3 rounded-md bg-white-100 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50"
+                  placeholder="Add a new task"
+                />
+                <Select
+                  className="max-w-xs absolute right-0 w-48"
+                  items={categories}
+                  label="Categories"
+                  placeholder="Select a category"
+                  classNames={{
+                    base: "max-w-xs",
+                    trigger: "h-12 bg-transparent",
+                  }}
+                  style={{
+                    background: "none",
+                  }}
+                  renderValue={(items: SelectedItems<Category>) => {
+                    return items.map((item) => {
+                      // Safely check if item.data is defined
+                      if (item.data) {
+                        return (
+                          <div
+                            key={item.key}
+                            className="flex items-center gap-2"
+                          >
+                            <div className="flex-shrink-0 text-lg text-purple-400">
+                              {item.data.icon}
+                            </div>
+                            <span className="capitalize hidden sm:flex text-purple-400">
+                              {item.data.label}
+                            </span>
+                          </div>
+                        );
+                      }
+                      return null; // Return null if item.data is undefined
+                    });
+                  }}
+                >
+                  {(category) => (
+                    <SelectItem key={category.label} textValue={category.label}>
+                      <div className="flex items-center gap-2">
+                        <div className="flex-shrink-0 text-lg">
+                          {category.icon}
+                        </div>
+                        <span className="capitalize font-poppins hidden sm:flex">
+                          {category.label}
+                        </span>
+                      </div>
+                    </SelectItem>
+                  )}
+                </Select>
+              </div>
               <Button className="flex bg-purple-100 rounded-md text-white p-1.5 w-14 xl:w-20 xl:h-14 text-sm xl:text-base">
                 Add
               </Button>
@@ -135,6 +199,7 @@ export default function HomepageBody() {
                   text: "Buy Groceries",
                   icon1: <FaUnlock size={14} />,
                   icon2: <CgTrash size={18} />,
+                  icon3: <TbHome size={18} />,
                   className: "bg-purple-100",
                 },
                 {
@@ -142,12 +207,14 @@ export default function HomepageBody() {
                   text2: "Completed",
                   icon1: <FaUnlock size={14} />,
                   icon2: <CgTrash size={18} />,
-                  className: "bg-purple-400 line-through",
+                  icon3: <MdCategory size={18} />,
+                  className: "bg-purple-300 line-through",
                 },
                 {
                   text: "Schedule team meeting",
                   icon1: <FaLock size={14} />,
                   icon2: <CgTrash size={18} />,
+                  icon3: <MdOutlineWorkOutline size={18} />,
                   className: "bg-purple-100",
                 },
               ].map((item, index) => (
@@ -165,6 +232,7 @@ export default function HomepageBody() {
                       )}
                       <button>{item.icon1}</button>
                       <button>{item.icon2}</button>
+                      <div>{item.icon3}</div>
                     </div>
                   </li>
                 </ul>
