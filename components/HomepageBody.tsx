@@ -137,7 +137,7 @@ export default function HomepageBody() {
               <div className="flex relative w-full">
                 <input
                   type="text"
-                  className="py-1.5 pl-1.5 pr-20 sm:px-3 rounded-md bg-white-100 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50 h-full"
+                  className="py-1.5 pl-1.5 pr-20 sm:pl-3 sm:pr-48 rounded-md bg-white-100 text-purple-400 outline-none text-sm xl:text-base w-full xl:h-14 shadow-md shadow-purple-400/50 h-full"
                   placeholder="Add a new task"
                 />
                 <Select
