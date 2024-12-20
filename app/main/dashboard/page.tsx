@@ -23,6 +23,12 @@ import {
 } from "@nextui-org/modal";
 import { useSuccessMessage } from "@/context/SuccessMessageContext";
 import ModalSidebar from "@/components/modal/ModalSidebar";
+import { motion } from 'framer-motion';
+
+interface TaskAddedMessage {
+  id: number;
+  text: string;
+}
 
 export default function Dashboard() {
   const { categories } = useCategories();
@@ -41,6 +47,9 @@ export default function Dashboard() {
       setSelectedCategory(category); // Set the selected category
     }
   };
+  const [taskAddedMessage, setTaskAddedMessage] = useState<TaskAddedMessage[]>(
+    []
+  );
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -109,6 +118,15 @@ export default function Dashboard() {
         },
       ]);
       setTodo(""); // Clear input after adding
+       const newMessage = { id: Date.now(), text: "Task Added Successfully" };
+       setTaskAddedMessage((prevMessages) => [...prevMessages, newMessage]);
+
+       // Auto-remove the message after 3 seconds
+       setTimeout(() => {
+         setTaskAddedMessage((prevMessages) =>
+           prevMessages.filter((message) => message.id !== newMessage.id)
+         );
+       }, 3000);
     }
   };
 
@@ -337,6 +355,21 @@ export default function Dashboard() {
           <p>{successMessage}</p>
         </div>
       )}
+
+      <div className="fixed bottom-4 right-6 flex flex-col space-y-2">
+        {taskAddedMessage.map((message) => (
+          <motion.div
+            key={message.id}
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 300, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex text-white bg-green-500 rounded-md p-4 text-sm"
+          >
+            <p>{message.text}</p>
+          </motion.div>
+        ))}
+      </div>
 
       <Modal isOpen={isOpen} onOpenChange={onClose} className="font-poppins">
         <ModalContent>
