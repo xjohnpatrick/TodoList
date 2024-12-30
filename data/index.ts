@@ -3,7 +3,7 @@ export const footerIcons = [
     id: 0,
     img: "/facebook.svg",
     alt: "Facebook Logo",
-    href: "https://www.facebook.com/JpIsidoro15/",
+    href: "https://www.facebook.com/jp.isid/",
   },
   {
     id: 1,
