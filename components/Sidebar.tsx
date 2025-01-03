@@ -68,6 +68,26 @@ export default function Sidebar() {
     }
   }, [isNavOpen]);
 
+  // const handleLogout = async () => {
+  //   // Call the backend to log out the user
+  //   try {
+  //     const response = await fetch("http://localhost:3001/logout", {
+  //       method: "GET", // Use GET since it's a redirect
+  //       credentials: "include", // Include cookies for session
+  //     });
+
+  //     if (response.ok) {
+  //       // Redirect manually if necessary, or let backend handle it
+  //       window.location.href = "/auth/sign-in";
+  //     } else {
+  //       alert("Failed to log out. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Logout error:", error);
+  //     alert("An error occurred while logging out.");
+  //   }
+  // };
+
   return (
     <>
       <motion.div
@@ -170,14 +190,16 @@ export default function Sidebar() {
                         isIconOnly
                         size="sm"
                         className="bg-transparent"
-                        onClick={() => addCategory(
-                          newCategory,
-                          categories,
-                          setErrorMessage,
-                          onOpen,
-                          addCategoryFn,
-                          setNewCategory
-                        )}
+                        onClick={() =>
+                          addCategory(
+                            newCategory,
+                            categories,
+                            setErrorMessage,
+                            onOpen,
+                            addCategoryFn,
+                            setNewCategory
+                          )
+                        }
                       >
                         <FaSquarePlus size={24} color="#4a5989" />
                       </Button>
@@ -261,12 +283,12 @@ export default function Sidebar() {
                 </Button>
 
                 <div className="flex h-[2px] w-full bg-purple-400 my-4" />
-
                 <Link href="/auth/sign-in">
                   <Button
                     className="bg-transparent text-purple-400 hover:bg-purple-100 hover:text-white flex relative w-full text-base"
                     size="md"
                     radius="sm"
+                    // onClick={handleLogout}
                   >
                     <MdOutlineLogout size={24} className="absolute left-4" />
                     Log Out
