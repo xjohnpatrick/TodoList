@@ -40,7 +40,7 @@ export default function ForgotPassword() {
 
           <div className="flex my-4 justify-center items-center gap-7">
             <div className="flex bg-purple-300 h-0.5 w-[90px]"></div>
-            <div className="flex text-purple-300 text-xs">or login with</div>
+            <div className="flex text-purple-300 text-xs text-nowrap">or login with</div>
             <div className="flex bg-purple-300 h-0.5 w-[90px]"></div>
           </div>
 
